@@ -1,5 +1,7 @@
 # Crosshair Customizer 🎯
 
+### I'm sorry, due to GitHub restrictions, I can't upload the EXE package directly, you need to package the py file yourself, don't worry, the tutorial is given in the README.md, you need to read down to understand the detailed usage and related updates
+
 # If you like this project, please consider giving it a star on GitHub! 🌟 Thank you for your support!🙏
 
 ## Hey there, gamers! Welcome to my little project! 🎉
@@ -57,10 +59,7 @@ Feel free to edit the `External_crosshair.py` file to add your own custom crossh
 ### Project Structure:
 ```
 准星/
-├── build/
-    └── (There are too many files,I don't want to talk about it😁)
-├── dist/
-│   └── External_crosshair.exe                    # The executable file (Just run this!)
+├── MIT File
 ├── External_crosshair.py                         # The source code (If you want to tweak settings)
 └── README.md                       # This file you’re reading right now!
 ```
@@ -72,11 +71,21 @@ Got ideas for new crosshair styles or improvements? Feel free to open an issue o
 
 ---
 
-### Contact Me:
+### Contact Me：
 Got questions or just want to chat? Hit me up via email! 📧
 My email is: [lixinhe3465@163.com]
 I'm still a student, so my response time might vary, but I'll do my best to get back to you as soon as possible. Remember to mention the purpose in the subject line! 😊
 
 ---
 
-### Hope you enjoy this tool! Happy gaming, and may your aim always be true! 😎
+### Changelog:
+  March 23, 2025：
+  --Fixed: Due to game reasons, the mouse is centered, and the Windows layer logic is started when firing, resulting in the game screen being overwritten and unable to fire
+
+  --Added: Added a new shortcut command: Ctrl+W, you can use this shortcut to quickly close the program (only for Windows)
+
+  Note: You can't change the name of the program, because the only condition to close the program is to make the name of the program "External_crosshair.exe"
+
+---
+
+### Hope you enjoy this tool! Happy gaming, have fun in all of game! 😎
