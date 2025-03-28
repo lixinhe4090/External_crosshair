@@ -42,8 +42,9 @@ Feel free to edit the `External_crosshair.py` file to add your own custom crossh
    ```bash
    pip install pyautogui
    ```
-3. Compile the script using PyInstaller:
+3. Compile the script using PyInstaller(Remember used "cd C:/Users/..."):
     ```bash
+    cd C:/Users/Administrator/Desktop/
     pyinstaller --onefile --noconsole External_crosshair.py External_crosshair.py
     ```
 4. The new External_crosshair.exe will be in the ./dist folder. Ready to go! 🚀
@@ -53,7 +54,9 @@ Feel free to edit the `External_crosshair.py` file to add your own custom crossh
 ### Important Tips:
 1. Game Compatibility: This tool is designed to enhance your gaming experience, but always check your game’s rules to ensure it’s allowed. Use it responsibly! 🙏
 2. Admin Rights: Running the program as an administrator is a good idea to avoid any hiccups. 💪
-3. Exiting the Program: To close the program, simply close the Python terminal or command prompt window, or press Ctrl+C. Easy peasy! 👋
+3. Exiting the Program: To close the program, simply close the Python terminal or command prompt window, or press Ctrl+W. Easy peasy! 👋
+    ```bash
+    taskkill /f /im External_crosshair.exe
     ```
 
 ### Project Structure:
@@ -82,7 +85,7 @@ I'm still a student, so my response time might vary, but I'll do my best to get 
   March 23, 2025：
   --Fixed: Due to game reasons, the mouse is centered, and the Windows layer logic is started when firing, resulting in the game screen being overwritten and unable to fire
 
-  --Added: Added a new shortcut command: Ctrl+W, you can use this shortcut to quickly close the program (only for Windows)
+  --Added: Added a new shortcut command: Ctrl+W, you can use this shortcut to quickly close the program (only for Windows)😊
 
   Note: You can't change the name of the program, because the only condition to close the program is to make the name of the program "External_crosshair.exe"
 
