@@ -6,15 +6,27 @@
 
 # Changelog:
 ## March 23, 2025 😄：
-  --Fixed: Due to game reasons, the mouse is centered, and the Windows layer logic is started when firing, resulting in the game screen being overwritten and unable to fire
+  --**Fixed**: Due to game reasons, the mouse is centered, and the Windows layer logic is started when firing, resulting in the game screen being overwritten and unable to fire
 
-  --Added: Added a new shortcut command: Ctrl+W, you can use this shortcut to quickly close the program (only for Windows)
+  --**Added**: Added a new shortcut command: Ctrl+W, you can use this shortcut to quickly close the program (only for Windows)
 
-  Note: You can't change the name of the program, because the only condition to close the program is to make the name of the program "External_crosshair.exe"
+  **Note**: You can't change the name of the program, because the only condition to close the program is to make the name of the program "External_crosshair.exe"
 
 ## In the (very) early morning of April 5, 2025 😴：
-  -- Using a new idea - Pygame dependency library, it effectively solves the problem of layer occupation in Windows
-  -- You can now use the Page UP/DOWN and Ctrl W key combination at any time to enable global listening
+  -- **Fixed**:Using a new idea - Pygame dependency library, it effectively solves the problem of layer occupation in Windows
+
+  -- **Added**:You can now use the Page UP/DOWN and Ctrl W key combination at any time to enable global listening
+
+## April 6, 2025 🌟：
+  - **Added**: Added new hotkey functionality for `F1` to `F8` to provide more control over the crosshair customization.
+    - `F1`, `F2`, `F3`: Switch between different crosshair colors (Red, Green, Blue).
+    - `F4`, `F5`: Adjust the size of the crosshair (increase and decrease).
+    - `F6`: Enter/Exit calibration mode to adjust the crosshair position using arrow keys.
+    - `F7`: Reset the crosshair to its default settings (color, size, and position).
+    - `F8`: Toggle the display of text prompts on the screen.
+  - **Enhanced**: Improved the visibility of text prompts by adding a black border around the text and ensuring the text color dynamically adjusts to be visible against the background.
+  - **Fixed**: Resolved an issue where the text prompts were not displaying correctly due to font rendering issues.
+  - **Note**: The text prompts now have a black border for better visibility. The default text color is white, but it will change to black if the background is too bright.
 
 ---
 
@@ -73,10 +85,7 @@ Feel free to edit the `External_crosshair.py` file to add your own custom crossh
 ### Project Structure:
 ```
 准星/
-├── build/
-    └── (There are too many files,I don't want to talk about it😁)
-├── dist/
-│   └── External_crosshair.exe                    # The executable file (Just run this!)
+├── MIT File
 ├── External_crosshair.py                         # The source code (If you want to tweak settings)
 └── README.md                       # This file you’re reading right now!
 ```
