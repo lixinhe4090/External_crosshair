@@ -185,7 +185,7 @@ keyboard.add_hotkey('up', adjust_crosshair_position, args=[keyboard.KeyboardEven
 keyboard.add_hotkey('down', adjust_crosshair_position, args=[keyboard.KeyboardEvent('down', 0, 'down')])
 keyboard.add_hotkey('left', adjust_crosshair_position, args=[keyboard.KeyboardEvent('down', 0, 'left')])
 keyboard.add_hotkey('right', adjust_crosshair_position, args=[keyboard.KeyboardEvent('down', 0, 'right')])
-keyboard.add_hotkey('ctrl+w', exit_program)
+keyboard.add_hotkey('ctrl+c', exit_program)
 
 # 主循环
 running = True
