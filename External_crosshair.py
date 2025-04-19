@@ -200,7 +200,7 @@ while running:
 
     # 显示热键提示
     if show_text:
-        hotkey_text = "Page Up/Down: 切换准星 | F1/F2/F3: 切换颜色 | F4/F5: 调整大小 | F6: 校准 | F7: 恢复初始 | F8: 隐藏/显示提示 | Ctrl+W: 退出"
+        hotkey_text = "Page Up/Down: 切换准星 | F1/F2/F3: 切换颜色 | F4/F5: 调整大小 | F6: 校准 | F7: 恢复初始 | F8: 隐藏/显示提示 | Ctrl+C: 退出"
         draw_text_with_border(screen, hotkey_text, (10, 10), font, (0, 0, 0), (255, 255, 255))
         if calibration_mode:
             calibration_text = "使用上下左右箭头键调整准星位置，F6退出"
