@@ -66,7 +66,7 @@ Feel free to edit the `External_crosshair.py` file to add your own custom crossh
 1. Make sure you have Python installed. (Python 3.8 or higher is recommended.) 🐍  
 2. Install the required libraries:
    ```bash
-   pip install pyautogui
+   pip install pyinstaller
    ```
 3. Compile the script using PyInstaller:
     ```bash
