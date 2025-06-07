@@ -5,6 +5,9 @@
 ### Sorry, due to GitHub's upload limitations, you'll need to package your own binaries to use all the features.😫
 
 # Changelog:
+## June 6, 2025 🍻
+  --**Fixed**: This is an epic revamp that fixes an issue where the game screen (or system screen) becomes stuck after starting the crosshair, but there are still unstable factors causing the problem (rarely but there are, reboot to fix it)
+
 ## March 23, 2025 😄：
   --**Fixed**: Due to game reasons, the mouse is centered, and the Windows layer logic is started when firing, resulting in the game screen being overwritten and unable to fire
 
