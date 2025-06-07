@@ -99,111 +99,126 @@ def draw_text_with_border(surface, text, position, font, border_color, text_colo
     text_surface = font.render(text, True, text_color)
     surface.blit(text_surface, position)
 
-# 切换准星
-def switch_crosshair(event):
-    global current_index
-    if event.name == "page up":  # Page Up
-        current_index = (current_index - 1) % len(crosshair_keys)
-    elif event.name == "page down":  # Page Down
-        current_index = (current_index + 1) % len(crosshair_keys)
-
-# 切换颜色
-def switch_color(event):
-    global current_color_index
-    if event.name == "f1":  # F1
-        current_color_index = 0
-    elif event.name == "f2":  # F2
-        current_color_index = 1
-    elif event.name == "f3":  # F3
-        current_color_index = 2
-
-# 调整大小
-def adjust_size_up(event):
-    global current_size
-    if event.name == "f4":  # F4
-        current_size += size_step
-
-def adjust_size_down(event):
-    global current_size
-    if event.name == "f5":  # F5
-        current_size = max(current_size - size_step, min_size)  # 确保不会小于最小大小
-
-# 进入/退出校准模式
-def enter_calibration_mode(event):
-    global calibration_mode
-    if event.name == "f6":  # F6
-        calibration_mode = not calibration_mode
-
-# 调整准星位置
-def adjust_crosshair_position(event):
-    global crosshair_position
-    if calibration_mode:
-        if event.name == "up":
-            crosshair_position[1] -= 5
-        elif event.name == "down":
-            crosshair_position[1] += 5
-        elif event.name == "left":
-            crosshair_position[0] -= 5
-        elif event.name == "right":
-            crosshair_position[0] += 5
-
-# 恢复默认设置
-def reset_to_default(event):
-    global current_size, current_color_index, crosshair_position, calibration_mode
-    if event.name == "f7":  # F7
-        current_size = 1.0  # 恢复默认大小
-        current_color_index = 0  # 恢复默认颜色（红色）
-        crosshair_position = [screen_width // 2, screen_height // 2]  # 恢复默认位置（屏幕中心）
-        calibration_mode = False  # 退出校准模式
-
-# 隐藏/显示文字提示
-def toggle_text(event):
-    global show_text
-    if event.name == "f8":  # F8
-        show_text = not show_text
-
-# 退出程序
-def exit_program():
-    # 方法1：使用 taskkill 强制结束进程
-    os.system('taskkill /f /im External_crosshair.exe')
-    # 方法2：使用 Pygame 的退出机制
-    pygame.quit()
-    sys.exit()
-
-# 监听按键
-keyboard.add_hotkey('page up', switch_crosshair, args=[keyboard.KeyboardEvent('down', 0, 'page up')])
-keyboard.add_hotkey('page down', switch_crosshair, args=[keyboard.KeyboardEvent('down', 0, 'page down')])
-keyboard.add_hotkey('f1', switch_color, args=[keyboard.KeyboardEvent('down', 0, 'f1')])
-keyboard.add_hotkey('f2', switch_color, args=[keyboard.KeyboardEvent('down', 0, 'f2')])
-keyboard.add_hotkey('f3', switch_color, args=[keyboard.KeyboardEvent('down', 0, 'f3')])
-keyboard.add_hotkey('f4', adjust_size_up, args=[keyboard.KeyboardEvent('down', 0, 'f4')])
-keyboard.add_hotkey('f5', adjust_size_down, args=[keyboard.KeyboardEvent('down', 0, 'f5')])
-keyboard.add_hotkey('f6', enter_calibration_mode, args=[keyboard.KeyboardEvent('down', 0, 'f6')])
-keyboard.add_hotkey('f7', reset_to_default, args=[keyboard.KeyboardEvent('down', 0, 'f7')])
-keyboard.add_hotkey('f8', toggle_text, args=[keyboard.KeyboardEvent('down', 0, 'f8')])
-keyboard.add_hotkey('up', adjust_crosshair_position, args=[keyboard.KeyboardEvent('down', 0, 'up')])
-keyboard.add_hotkey('down', adjust_crosshair_position, args=[keyboard.KeyboardEvent('down', 0, 'down')])
-keyboard.add_hotkey('left', adjust_crosshair_position, args=[keyboard.KeyboardEvent('down', 0, 'left')])
-keyboard.add_hotkey('right', adjust_crosshair_position, args=[keyboard.KeyboardEvent('down', 0, 'right')])
-keyboard.add_hotkey('ctrl+c', exit_program)
-
-# 主循环
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-
+# 更新准星显示
+def update_crosshair_display():
     screen.fill((0, 0, 0))  # 设置背景为黑色（透明色）
     center = tuple(crosshair_position)  # 使用校准后的准星位置
     crosshairs[crosshair_keys[current_index]](screen, center, colors[current_color_index], current_size)  # 绘制当前准星
-
-    # 显示热键提示
+    
     if show_text:
         hotkey_text = "Page Up/Down: 切换准星 | F1/F2/F3: 切换颜色 | F4/F5: 调整大小 | F6: 校准 | F7: 恢复初始 | F8: 隐藏/显示提示 | Ctrl+C: 退出"
         draw_text_with_border(screen, hotkey_text, (10, 10), font, (0, 0, 0), (255, 255, 255))
         if calibration_mode:
             calibration_text = "使用上下左右箭头键调整准星位置，F6退出"
             draw_text_with_border(screen, calibration_text, (10, 40), font, (0, 0, 0), (255, 255, 255))
+    
+    pygame.display.flip()  # 刷新屏幕
 
-    pygame.display.flip()
+# 切换准星
+def switch_crosshair():
+    global current_index
+    current_index = (current_index + 1) % len(crosshair_keys)
+    update_crosshair_display()  # 更新显示
+
+# 切换颜色
+def switch_color():
+    global current_color_index
+    current_color_index = (current_color_index + 1) % len(colors)
+    update_crosshair_display()  # 更新显示
+
+# 调整大小
+def adjust_size_up():
+    global current_size
+    current_size += size_step
+    update_crosshair_display()  # 更新显示
+
+def adjust_size_down():
+    global current_size
+    current_size = max(current_size - size_step, min_size)  # 确保不会小于最小大小
+    update_crosshair_display()  # 更新显示
+
+# 进入/退出校准模式
+def enter_calibration_mode():
+    global calibration_mode
+    calibration_mode = not calibration_mode
+    update_crosshair_display()  # 更新显示
+
+# 调整准星位置
+def move_up():
+    global crosshair_position
+    if calibration_mode:
+        crosshair_position[1] -= 5
+        update_crosshair_display()  # 更新显示
+
+def move_down():
+    global crosshair_position
+    if calibration_mode:
+        crosshair_position[1] += 5
+        update_crosshair_display()  # 更新显示
+
+def move_left():
+    global crosshair_position
+    if calibration_mode:
+        crosshair_position[0] -= 5
+        update_crosshair_display()  # 更新显示
+
+def move_right():
+    global crosshair_position
+    if calibration_mode:
+        crosshair_position[0] += 5
+        update_crosshair_display()  # 更新显示
+
+# 恢复默认设置
+def reset_to_default():
+    global current_size, current_color_index, crosshair_position, calibration_mode
+    current_size = 1.0  # 恢复默认大小
+    current_color_index = 0  # 恢复默认颜色（红色）
+    crosshair_position = [screen_width // 2, screen_height // 2]  # 恢复默认位置（屏幕中心）
+    calibration_mode = False  # 退出校准模式
+    update_crosshair_display()  # 更新显示
+
+# 隐藏/显示文字提示
+def toggle_text():
+    global show_text
+    show_text = not show_text
+    update_crosshair_display()  # 更新显示
+
+# 退出程序
+def exit_program():
+    pygame.quit()
+    sys.exit()
+
+# 监听按键
+keyboard.add_hotkey('page up', switch_crosshair)
+keyboard.add_hotkey('page down', switch_crosshair)
+keyboard.add_hotkey('f1', switch_color)
+keyboard.add_hotkey('f2', switch_color)
+keyboard.add_hotkey('f3', switch_color)
+keyboard.add_hotkey('f4', adjust_size_up)
+keyboard.add_hotkey('f5', adjust_size_down)
+keyboard.add_hotkey('f6', enter_calibration_mode)
+keyboard.add_hotkey('f7', reset_to_default)
+keyboard.add_hotkey('f8', toggle_text)
+keyboard.add_hotkey('up', move_up)
+keyboard.add_hotkey('down', move_down)
+keyboard.add_hotkey('left', move_left)
+keyboard.add_hotkey('right', move_right)
+keyboard.add_hotkey('ctrl+c', exit_program)
+
+# 主循环
+running = True
+clock = pygame.time.Clock()  # 创建计时器
+
+# 初始刷新
+update_crosshair_display()
+
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+    
+    # 降低无操作时的刷新频率
+    clock.tick(30)
+
+pygame.quit()
+sys.exit()
